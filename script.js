@@ -8,7 +8,13 @@ recognition.interimResults = true;
 let p = document.createElement('p');
 
 recognition.addEventListener('result', (e) => {
-  console.log(e)
+
+  const text = Array.from(e.results)
+    .map(result => result[0])
+    .map(result => result.transcript)
+    .join('');
+
+  console.log(text);
 })
 
 recognition.start();
