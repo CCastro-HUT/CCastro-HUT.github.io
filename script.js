@@ -14,7 +14,24 @@ recognition.addEventListener('result', (e) => {
     .map(result => result.transcript)
     .join('');
 
+  p.innerText = text;
+  texts.appendChild(p);
+
+  if(e.results[0].isFinal){
+    if(text.includes('hello')){
+      p = document.createElement('p');
+      p.classList.add('replay');
+      p.innerText = 'Hi';
+      texts.appendChild(p);
+    }
+    p = document.createElement('p');
+  }
+
   console.log(text);
+})
+
+recognition.addEventListener('end', ()=>{
+  recognition.start();
 })
 
 recognition.start();
